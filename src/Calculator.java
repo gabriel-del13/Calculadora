@@ -1,19 +1,22 @@
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-
+// He decidido crear esta aplicación sencilla commo mi primer proyecto de Java
+// Biblioteca utilizadas:
+import javafx.application.Application; // Clase base para todas las aplicaciones JavaFX
+import javafx.geometry.Insets; // Clase para definir márgenes (espacios) alrededor de un nodo 
+import javafx.scene.Scene; // Representa la escena de la aplicación JavaFX (interfaz, botones, campos de texto, etc.)
+import javafx.scene.control.Button; // Representa un botón en la interfaz gráfica
+import javafx.scene.control.TextField; // Representa un campo de texto de una sola línea
+import javafx.scene.image.Image; // Clase para cargar y representar una imagen
+import javafx.scene.image.ImageView; // Nodo que muestra una imagen
+import javafx.scene.layout.GridPane; // Contenedor que organiza sus hijos en una cuadrícula
+import javafx.stage.Stage; // Representa la ventana principal de la aplicación
 
 public class Calculator extends Application {
 
-    private TextField display;
+    private TextField display; //Muestro de numeros y resultados en la calculadora (espacio en blanco)
 
     @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Calculadora de Gabriel");
+    public void start(Stage primaryStage) { //Ventana principal
+        primaryStage.setTitle("Calculadora de Gabriel"); //Titulo
 
         display = new TextField();
         display.setEditable(false);
@@ -24,7 +27,7 @@ public class Calculator extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
 
-        // Adding buttons and display to the grid
+        // Botones
         String[] buttonLabels = {
                 "7", "8", "9", "/",
                 "4", "5", "6", "*",
@@ -50,12 +53,19 @@ public class Calculator extends Application {
 
         grid.add(display, 0, 0, 4, 1);
 
-        Scene scene = new Scene(grid, 400, 270);
+        // Cambio #1: Añadiendo Imagen
+        ImageView imageView = new ImageView();
+        imageView.setImage(new Image("file:fondo.jpg"));
+        imageView.setFitWidth(200); 
+        imageView.setPreserveRatio(true); 
+        grid.add(imageView, 4, 1,1,3); 
+
+        Scene scene = new Scene(grid, 400, 310);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void buttonClicked(String label) {
+    private void buttonClicked(String label) { // = y c
         switch (label) {
             case "=":
                 evaluate();
@@ -69,7 +79,7 @@ public class Calculator extends Application {
         }
     }
 
-    private void evaluate() {
+    private void evaluate() { //Resultado
         try {
             String result = String.valueOf(eval(display.getText()));
             display.setText(result);
@@ -78,7 +88,7 @@ public class Calculator extends Application {
         }
     }
 
-    // Simple evaluation method (Note: This is not very robust and only for demo purposes)
+    // Metodo de evaluacion simple (sumas, restas, multi y division)  //pos: posicion actual en la cadena de expression / ch: caracter actual en la posicion pos
     private double eval(String expression) {
         return new Object() {
             int pos = -1, ch;
@@ -141,7 +151,7 @@ public class Calculator extends Application {
             }
         }.parse();
     }
-
+    // Run de JavaFX
     public static void main(String[] args) {
         launch(args);
     }
