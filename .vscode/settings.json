@@ -1,8 +1,8 @@
 {
-    "java.jdt.ls.java.home": "C:\\Program Files\\Java",
+    "java.jdt.ls.java.home": "C:\\Program Files\\Java\\SDk17",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "C:/Program Files/Java/javafx-sdk-22.0.1/lib/**/*.jar"
+        "C:/Program Files/Java/javafx-sdk-17.0.11/lib/**/*.jar"
     ]
 }
 
