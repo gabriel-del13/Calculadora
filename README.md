@@ -1,2 +1,2 @@
 ﻿# Calculadora
-7/12/2024
+Finalizado
